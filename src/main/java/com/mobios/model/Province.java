@@ -19,40 +19,38 @@ public class Province implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int province_autoID;
+	private int provinceAutoID;
 	
-	@NotBlank
-	private String province_name;
+	private String provinceName;
 
 	/**
-	 * @return the province_autoID
+	 * @return the provinceAutoID
 	 */
-	public int getProvince_autoID() {
-		return province_autoID;
+	public int getProvinceAutoID() {
+		return provinceAutoID;
 	}
 
 	/**
-	 * @param province_autoID the province_autoID to set
+	 * @param provinceAutoID the provinceAutoID to set
 	 */
-	public void setProvince_autoID(int province_autoID) {
-		this.province_autoID = province_autoID;
+	public void setProvinceAutoID(int provinceAutoID) {
+		this.provinceAutoID = provinceAutoID;
 	}
 
 	/**
-	 * @return the province_name
+	 * @return the provinceName
 	 */
-	public String getProvince_name() {
-		return province_name;
+	public String getProvinceName() {
+		return provinceName;
 	}
 
 	/**
-	 * @param province_name the province_name to set
+	 * @param provinceName the provinceName to set
 	 */
-	public void setProvince_name(String province_name) {
-		this.province_name = province_name;
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
 	}
-	
-	
+
 	
 
 }
