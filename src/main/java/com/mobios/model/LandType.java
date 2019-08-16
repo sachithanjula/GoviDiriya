@@ -18,22 +18,22 @@ public class LandType implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cxLandTypeAutoId;
+	private int cxLandTypeAutoID;
 	
 	private String cxLandTypes;
 
 	/**
-	 * @return the cxLandTypeAutoId
+	 * @return the cxLandTypeAutoID
 	 */
-	public int getCxLandTypeAutoId() {
-		return cxLandTypeAutoId;
+	public int getCxLandTypeAutoID() {
+		return cxLandTypeAutoID;
 	}
 
 	/**
-	 * @param cxLandTypeAutoId the cxLandTypeAutoId to set
+	 * @param cxLandTypeAutoID the cxLandTypeAutoID to set
 	 */
-	public void setCxLandTypeAutoId(int cxLandTypeAutoId) {
-		this.cxLandTypeAutoId = cxLandTypeAutoId;
+	public void setCxLandTypeAutoID(int cxLandTypeAutoID) {
+		this.cxLandTypeAutoID = cxLandTypeAutoID;
 	}
 
 	/**
@@ -48,8 +48,7 @@ public class LandType implements Serializable{
 	 */
 	public void setCxLandTypes(String cxLandTypes) {
 		this.cxLandTypes = cxLandTypes;
-	} 
-	
-	
+	}
 
+	
 }

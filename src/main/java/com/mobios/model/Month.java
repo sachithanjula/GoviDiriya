@@ -18,36 +18,38 @@ public class Month implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cxMonthAutoId;
+	private int cxMonthAutoID;
 
-	private String cxMonthNname;
+	private String cxMonthName;
 
 	/**
-	 * @return the cxMonthAutoId
+	 * @return the cxMonthAutoID
 	 */
-	public int getCxMonthAutoId() {
-		return cxMonthAutoId;
+	public int getCxMonthAutoID() {
+		return cxMonthAutoID;
 	}
 
 	/**
-	 * @param cxMonthAutoId the cxMonthAutoId to set
+	 * @param cxMonthAutoID the cxMonthAutoID to set
 	 */
-	public void setCxMonthAutoId(int cxMonthAutoId) {
-		this.cxMonthAutoId = cxMonthAutoId;
+	public void setCxMonthAutoID(int cxMonthAutoID) {
+		this.cxMonthAutoID = cxMonthAutoID;
 	}
 
 	/**
-	 * @return the cxMonthNname
+	 * @return the cxMonthName
 	 */
-	public String getCxMonthNname() {
-		return cxMonthNname;
+	public String getCxMonthName() {
+		return cxMonthName;
 	}
 
 	/**
-	 * @param cxMonthNname the cxMonthNname to set
+	 * @param cxMonthName the cxMonthName to set
 	 */
-	public void setCxMonthNname(String cxMonthNname) {
-		this.cxMonthNname = cxMonthNname;
+	public void setCxMonthName(String cxMonthName) {
+		this.cxMonthName = cxMonthName;
 	}
 
+	
+	
 }

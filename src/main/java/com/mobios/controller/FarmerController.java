@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mobios.model.Farmer;
 import com.mobios.model.Province;
 import com.mobios.repository.FarmerRepository;
-import com.mobios.repository.GDRepository;
 import com.mobios.repository.OTPRepository;
 
 @RestController

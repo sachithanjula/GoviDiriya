@@ -2,12 +2,19 @@ package com.mobios.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mobios.model.Advertisement;
+import com.mobios.model.AdvertisementCropList;
 import com.mobios.model.Crop;
 import com.mobios.model.District;
 import com.mobios.model.GnDivition;
@@ -15,7 +22,10 @@ import com.mobios.model.LandDivision;
 import com.mobios.model.LandType;
 import com.mobios.model.Month;
 import com.mobios.model.Province;
+import com.mobios.repository.AdCropLstRepository;
+import com.mobios.repository.AdvertisementRepository;
 import com.mobios.repository.CropRepository;
+import com.mobios.repository.FarmerRepository;
 import com.mobios.repository.GDDistrictRepository;
 import com.mobios.repository.GDLandDivisionRepository;
 import com.mobios.repository.GDLandGnRepository;
@@ -47,6 +57,15 @@ public class GDController {
 
 	@Autowired
 	LandTypeRepository landTypeRepository;
+
+	@Autowired
+	AdCropLstRepository adCropLstRepository;
+	
+	@Autowired
+	FarmerRepository farmerRepository;
+	
+	@Autowired
+	AdvertisementRepository advertisementRepository;
 
 	// Get All provinces
 	@GetMapping("/provinces")
@@ -88,6 +107,12 @@ public class GDController {
 	@GetMapping("/months")
 	public List<Month> getAllMonths() {
 		return monthRepository.findAll();
+	}
+
+	// Get All adcroplst
+	@GetMapping("/adcroplst")
+	public List<AdvertisementCropList> getAlladcroplst() {
+		return adCropLstRepository.findAll();
 	}
 
 	// Get province by id
@@ -153,5 +178,13 @@ public class GDController {
 		return gdLandGnRepository.findByDivisionId(divID);
 
 	}
-
+	
+	//add form details
+	@PostMapping("/form")
+	public Advertisement createForm(@Valid @RequestBody Advertisement advertisement) {
+		
+		return advertisementRepository.save(advertisement);
+		
+	}
+	
 }

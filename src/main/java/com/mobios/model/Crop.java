@@ -18,22 +18,22 @@ public class Crop implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cxCropListAutoId;
+	private int cxCropListAutoID;
 	
 	private String cxCropListName;
 
 	/**
-	 * @return the cxCropListAutoId
+	 * @return the cxCropListAutoID
 	 */
-	public int getCxCropListAutoId() {
-		return cxCropListAutoId;
+	public int getCxCropListAutoID() {
+		return cxCropListAutoID;
 	}
 
 	/**
-	 * @param cxCropListAutoId the cxCropListAutoId to set
+	 * @param cxCropListAutoID the cxCropListAutoID to set
 	 */
-	public void setCxCropListAutoId(int cxCropListAutoId) {
-		this.cxCropListAutoId = cxCropListAutoId;
+	public void setCxCropListAutoID(int cxCropListAutoID) {
+		this.cxCropListAutoID = cxCropListAutoID;
 	}
 
 	/**
@@ -49,7 +49,6 @@ public class Crop implements Serializable{
 	public void setCxCropListName(String cxCropListName) {
 		this.cxCropListName = cxCropListName;
 	}
-	
-	
 
+	
 }

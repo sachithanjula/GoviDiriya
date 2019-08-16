@@ -18,7 +18,7 @@ public class GnDivition implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int gnDivisionAutoId;
+	private int gnDivisionAutoID;
 	
 	private int provinceId;
 	
@@ -29,17 +29,17 @@ public class GnDivition implements Serializable{
 	private String gnDivisionName;
 
 	/**
-	 * @return the gnDivisionAutoId
+	 * @return the gnDivisionAutoID
 	 */
-	public int getGnDivisionAutoId() {
-		return gnDivisionAutoId;
+	public int getGnDivisionAutoID() {
+		return gnDivisionAutoID;
 	}
 
 	/**
-	 * @param gnDivisionAutoId the gnDivisionAutoId to set
+	 * @param gnDivisionAutoID the gnDivisionAutoID to set
 	 */
-	public void setGnDivisionAutoId(int gnDivisionAutoId) {
-		this.gnDivisionAutoId = gnDivisionAutoId;
+	public void setGnDivisionAutoID(int gnDivisionAutoID) {
+		this.gnDivisionAutoID = gnDivisionAutoID;
 	}
 
 	/**
@@ -97,7 +97,6 @@ public class GnDivition implements Serializable{
 	public void setGnDivisionName(String gnDivisionName) {
 		this.gnDivisionName = gnDivisionName;
 	}
-	
-	
 
+	
 }

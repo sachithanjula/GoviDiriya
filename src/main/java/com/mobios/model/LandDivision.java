@@ -18,7 +18,7 @@ public class LandDivision implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int divisionAutoId;
+	private int divisionAutoID;
 	
 	private int districtId;
 	
@@ -27,17 +27,17 @@ public class LandDivision implements Serializable{
 	private String divisionName;
 
 	/**
-	 * @return the divisionAutoId
+	 * @return the divisionAutoID
 	 */
-	public int getDivisionAutoId() {
-		return divisionAutoId;
+	public int getDivisionAutoID() {
+		return divisionAutoID;
 	}
 
 	/**
-	 * @param divisionAutoId the divisionAutoId to set
+	 * @param divisionAutoID the divisionAutoID to set
 	 */
-	public void setDivisionAutoId(int divisionAutoId) {
-		this.divisionAutoId = divisionAutoId;
+	public void setDivisionAutoID(int divisionAutoID) {
+		this.divisionAutoID = divisionAutoID;
 	}
 
 	/**
@@ -81,6 +81,7 @@ public class LandDivision implements Serializable{
 	public void setDivisionName(String divisionName) {
 		this.divisionName = divisionName;
 	}
+
 	
 	
 }
