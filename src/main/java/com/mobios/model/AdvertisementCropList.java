@@ -24,7 +24,9 @@ public class AdvertisementCropList implements Serializable{
 	
 	private int cxCropMonthId;
 	
-	private int cxCropListId;
+	private String cxCropListName;
+	
+	private String cx_crop_duration;
 
 	/**
 	 * @return the cxCropListAdvAutoID
@@ -69,17 +71,31 @@ public class AdvertisementCropList implements Serializable{
 	}
 
 	/**
-	 * @return the cxCropListId
+	 * @return the cxCropListName
 	 */
-	public int getCxCropListId() {
-		return cxCropListId;
+	public String getCxCropListName() {
+		return cxCropListName;
 	}
 
 	/**
-	 * @param cxCropListId the cxCropListId to set
+	 * @param cxCropListName the cxCropListName to set
 	 */
-	public void setCxCropListId(int cxCropListId) {
-		this.cxCropListId = cxCropListId;
+	public void setCxCropListName(String cxCropListName) {
+		this.cxCropListName = cxCropListName;
+	}
+
+	/**
+	 * @return the cx_crop_duration
+	 */
+	public String getCx_crop_duration() {
+		return cx_crop_duration;
+	}
+
+	/**
+	 * @param cx_crop_duration the cx_crop_duration to set
+	 */
+	public void setCx_crop_duration(String cx_crop_duration) {
+		this.cx_crop_duration = cx_crop_duration;
 	}
 
 	
