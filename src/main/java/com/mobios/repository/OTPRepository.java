@@ -6,7 +6,7 @@ import com.mobios.model.OTP;
 
 public interface OTPRepository extends JpaRepository<OTP, String> {
 
-	OTP findOTPByMobile (int mobile);
+	OTP findOTPByMobile (String mobile);
 
 	
 

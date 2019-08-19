@@ -21,7 +21,7 @@ public class OTP implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 
-	private int mobile;
+	private String mobile;
 
 	@NotBlank
 	private String otp;
@@ -37,11 +37,12 @@ public class OTP implements Serializable {
 	}
 
 	/**
-	 * @param id
+	 * @param mobile
 	 * @param otp
+	 * @param dateTime
 	 */
-	public OTP(int mobile, String otp, String dateTime) {
-
+	public OTP(String mobile, String otp, String dateTime) {
+		super();
 		this.mobile = mobile;
 		this.otp = otp;
 		this.dateTime = dateTime;
@@ -50,14 +51,14 @@ public class OTP implements Serializable {
 	/**
 	 * @return the mobile
 	 */
-	public int getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
 
 	/**
 	 * @param mobile the mobile to set
 	 */
-	public void setMobile(int mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 
@@ -102,7 +103,5 @@ public class OTP implements Serializable {
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
-	
-	
 
 }

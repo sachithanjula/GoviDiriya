@@ -30,23 +30,7 @@ public class FarmerController {
 		return farmerRepository.findFarmerByMobileNo(mobileNo);
 	}
 
-	/*
-	 * @PutMapping("/{mobile}") public Farmer updatePassword(@PathVariable(value =
-	 * "mobile") String mobileNo,
-	 * 
-	 * @Valid @RequestBody Farmer farmerDetails) {
-	 * 
-	 * Farmer farmer = farmerRepository.findFarmerByMobileNo(mobileNo);
-	 * farmer.setId(farmer.getId()); farmer.setMobileNo(mobileNo);
-	 * farmer.setPassword(farmerDetails.getPassword());
-	 * farmer.setNIC(farmer.getNIC());
-	 * 
-	 * System.out.println("Pass: "+farmer.getPassword()); Farmer updateFarmer =
-	 * farmerRepository.save(farmer);
-	 * 
-	 * return updateFarmer; }
-	 */
-
+	
 	@PostMapping("/password")
 	public Farmer setPassword(@RequestBody Farmer farmer) {
 		String mob = farmer.getMobileNo();

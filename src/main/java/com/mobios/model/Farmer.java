@@ -12,26 +12,23 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 @Entity
-@Table(name="cx_farmer_registations")
+@Table(name = "cx_farmer_registations")
 @EntityListeners(AuditingEntityListener.class)
 public class Farmer implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-	
-	
+
 	@NotBlank
 	private String mobileNo;
-	
+
 	@NotBlank
 	private String NIC;
+
 	
-	@NotBlank
 	private String password;
-	
 
 	/**
 	 * 

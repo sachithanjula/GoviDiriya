@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.mobios.excepion.Validation;
 import com.mobios.model.Farmer;
 import com.mobios.model.OTP;
+import com.mobios.model.Responses.OTPResponse;
 import com.mobios.repository.FarmerRepository;
 import com.mobios.repository.OTPRepository;
-
 
 @RestController
 @RequestMapping("/api/govidiriya")
@@ -32,35 +32,46 @@ public class OTPController {
 
 	@Autowired
 	OTPRepository otpRepository;
-	
+
 	@Autowired
 	FarmerRepository farmerRepository;
+	
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	Date date = new Date();
+	String dateTime = formatter.format(date);
 
 	@GetMapping("/otp/check/{otp}/{mobile}")
-	public OTP checkOTP(@PathVariable(value = "otp") String otp,@PathVariable(value = "mobile") int mobile) {
-		
+	public OTPResponse checkOTP(@PathVariable(value = "otp") String otp, @PathVariable(value = "mobile") String mobile) {
+
 		OTP Otp = otpRepository.findOTPByMobile(mobile);
 		String resOtp = Otp.getOtp();
-		
-		if(resOtp.equals(otp)) {
+
+		if (resOtp.equals(otp)) {
 			System.out.print(otpRepository.findOTPByMobile(mobile));
-			return otpRepository.findOTPByMobile(mobile);
-			
-		}else {
-			System.out.print(resOtp +" : not equal to "+otp);
-			return null;
+
+			return new OTPResponse("202", "OTP tallies with the database entry");
+
+		} else {
+			System.out.print(resOtp + " : not equal to " + otp);
+			return new OTPResponse("203", "OTP doesnot Tally with Database");
 		}
+
 	}
-	
-	
+
 	/**
 	 * @param mobile
 	 * @return
 	 */
 	@GetMapping("/otp/{mobile}")
-	public int getOTP(@PathVariable(value = "mobile") int mobile) {
+	public OTPResponse getOTP(@PathVariable(value = "mobile") String mobile) {
 
-		String mobileS = String.valueOf(mobile);
+		String mobileS = mobile;
+		
+		Validation validation = new Validation();
+		mobileS =validation.validateMobile(mobileS);
+		
+		System.out.println(mobileS);
 		getFarmerByMobile(mobileS);
 		
 		if (getFarmerByMobile(mobileS) != null) {
@@ -68,32 +79,44 @@ public class OTPController {
 
 			Random r = new Random(System.currentTimeMillis());
 			int otp = 10000 + r.nextInt(20000);
-			
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-			Date date = new Date();
-			String dateTime = formatter.format(date);
-			
-			OTP Otp = new OTP(mobile,String.valueOf(otp),dateTime);
-			
-			Otp.setMobile(mobile);
-			Otp.setOtp(String.valueOf(otp));
-			Otp.setDateTime(dateTime);
-						
-			saveOTP(Otp);
-			
-			//sendSMS(mobile, String.valueOf(otp));
-			return otp;
-			
+
+			OTP Otp = new OTP(mobileS, String.valueOf(otp), dateTime);
+
+			OTPResponse otpResponse = new OTPResponse("200", "Mobile is in Database . OTP Sent successfully");
+
+			if (otpRepository.findOTPByMobile(mobileS) != null) {
+				System.out.println("inside update");
+				updateOTP(mobileS,otp);
+				return new OTPResponse("206", "Resend OTP Database Update");
+
+			} else {
+				Otp.setMobile(mobileS);
+				Otp.setOtp(String.valueOf(otp));
+				Otp.setDateTime(dateTime);
+				saveOTP(Otp);
+			}
+
+			// sendSMS(mobile, String.valueOf(otp));
+			return otpResponse;
+
 		} else {
-			return 0;
+			return new OTPResponse("201", "Mobile Number is not in database");
 		}
 	}
+
 	
-	
+	private OTP updateOTP(String mobile, int otp) {
+		OTP Otp = otpRepository.findOTPByMobile(mobile);
+		Otp.setMobile(mobile);
+		Otp.setOtp(String.valueOf(otp));
+		Otp.setDateTime(dateTime);
+		
+		return otpRepository.save(Otp);
+		
+	}
 
 	private OTP saveOTP(OTP otp) {
 		return otpRepository.save(otp);
-		
 	}
 
 	/**
@@ -101,15 +124,11 @@ public class OTPController {
 	 * @return
 	 */
 	private Farmer getFarmerByMobile(String mobileNo) {
-
 		Farmer farmer = farmerRepository.findFarmerByMobileNo(mobileNo);
-		return farmerRepository.findFarmerByMobileNo(mobileNo);
-
+		return farmer;
 	}
 
-	
-	
-	private String sendSMS(int mobile, String otp) {
+	private String sendSMS(String mobile, String otp) {
 
 		String url = "http://122.255.29.68:5000/sms/send_sms.php?username=mobios_alert&password=Mo321Ar&src=SMSDEMO&dst="
 				+ mobile + "&msg=" + otp + "&dr=1 ";
@@ -143,7 +162,7 @@ public class OTPController {
 			System.out.println("Exception in Client.sendSMS " + e.toString());
 			converted_response = "xxxxxxxxxx_message_not_success_xxxxxxxxxx";
 		}
-		
+
 		return converted_response;
 	}
 
