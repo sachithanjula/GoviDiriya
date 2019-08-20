@@ -1,5 +1,7 @@
 package com.mobios.controller;
 
+import java.util.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import com.mobios.model.Advertisement;
 import com.mobios.model.AdvertisementCropList;
 import com.mobios.model.Crop;
 import com.mobios.model.District;
+import com.mobios.model.FormSubmit;
 import com.mobios.model.GnDivition;
 import com.mobios.model.LandDivision;
 import com.mobios.model.LandType;
@@ -36,6 +39,10 @@ import com.mobios.repository.MonthRepository;
 @RestController
 @RequestMapping("/api/govidiriya")
 public class GDController {
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	Date date = new Date();
+	String dateTime = formatter.format(date);
 
 	@Autowired
 	GDProvinceRepository gdProvinceRepository;
@@ -60,10 +67,10 @@ public class GDController {
 
 	@Autowired
 	AdCropLstRepository adCropLstRepository;
-	
+
 	@Autowired
 	FarmerRepository farmerRepository;
-	
+
 	@Autowired
 	AdvertisementRepository advertisementRepository;
 
@@ -178,13 +185,48 @@ public class GDController {
 		return gdLandGnRepository.findByDivisionId(divID);
 
 	}
-	
-	//add form details
+
+	// add form details
 	@PostMapping("/form")
-	public Advertisement createForm(@Valid @RequestBody Advertisement advertisement) {
+	public FormSubmit createForm(@Valid @RequestBody FormSubmit formSubmit) {
 		
-		return advertisementRepository.save(advertisement);
+		String mobile = formSubmit.getFmobile();
+		String nic = formSubmit.getfNIC();
+		String district = formSubmit.getFdistrict();
+		String province = formSubmit.getFprovince();
+		String division = formSubmit.getFdivision();
+		String gramaNiladariDiv = formSubmit.getFgramaNiladariDiv();
+		String landName = formSubmit.getFlandName();
+		String expectedInvestment = formSubmit.getFexpectedInvestment();
+		String expectedReturnType = formSubmit.getFexpectedReturnType();
+		
+		
+		int landArea = formSubmit.getFlandArea();
+		int expectedInvestType = formSubmit.getFexpectedInvestType();
+		
+		//add crops to advertisementCropList
+		for (int i=0; i<formSubmit.getAdvertisementCropList().size(); i++) {
+			
+			int adID = formSubmit.getAdvertisementCropList().get(i).getCxAdvertisementId();
+			int monthID = formSubmit.getAdvertisementCropList().get(i).getCxCropMonthId();
+			String cropName = formSubmit.getAdvertisementCropList().get(i).getCxCropListName();
+			String duration = formSubmit.getAdvertisementCropList().get(i).getCx_crop_duration();
+			AdvertisementCropList advertisementCropList = new AdvertisementCropList(adID, monthID, cropName, duration);
+			adCropLstRepository.save(advertisementCropList);
+			
+		}
+		
+		Advertisement advertisement = new Advertisement(mobile, nic, district, province, division, gramaNiladariDiv, landName, landArea, expectedInvestType, expectedInvestment, expectedReturnType, dateTime);
+		
+		System.out.println(advertisement);
+		
+		advertisement.print();
+				
+		advertisementRepository.save(advertisement);
+		
+		return formSubmit;
 		
 	}
-	
+
 }
+;

@@ -1,6 +1,7 @@
 package com.mobios.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -43,6 +44,60 @@ public class Advertisement implements Serializable {
 	private String expectedReturnType;
 
 	private String createdDateTime;
+	
+	
+
+	/**
+	 * 
+	 */
+	public Advertisement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+
+	/**
+	 * @param mobile
+	 * @param nIC
+	 * @param district
+	 * @param province
+	 * @param division
+	 * @param gramaNiladariDiv
+	 * @param landName
+	 * @param landArea
+	 * @param expectedInvestType
+	 * @param expectedInvestment
+	 * @param expectedReturnType
+	 * @param createdDateTime
+	 */
+	public Advertisement(String mobile, String nIC, String district, String province, String division,
+			String gramaNiladariDiv, String landName, int landArea, int expectedInvestType, String expectedInvestment,
+			String expectedReturnType, String createdDateTime) {
+		super();
+		this.mobile = mobile;
+		NIC = nIC;
+		this.district = district;
+		this.province = province;
+		this.division = division;
+		this.gramaNiladariDiv = gramaNiladariDiv;
+		this.landName = landName;
+		this.landArea = landArea;
+		this.expectedInvestType = expectedInvestType;
+		this.expectedInvestment = expectedInvestment;
+		this.expectedReturnType = expectedReturnType;
+		this.createdDateTime = createdDateTime;
+	}
+
+	public void print() {
+		System.out.println(this.mobile + ", " + NIC + ", " + this.district + ", " + this.province + ", " + this.division + ", " + 
+				this.gramaNiladariDiv + ", " + this.landName + ", " + this.landArea + ", " + this.expectedInvestType + ", " + 
+				this.expectedInvestment + ", " + this.expectedReturnType + ", " + this.createdDateTime);
+	}
+
+
 
 	/**
 	 * @return the id
