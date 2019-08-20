@@ -27,6 +27,29 @@ public class AdvertisementCropList implements Serializable{
 	private String cxCropListName;
 	
 	private String cx_crop_duration;
+	
+
+	/**
+	 * 
+	 */
+	public AdvertisementCropList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param cxAdvertisementId
+	 * @param cxCropMonthId
+	 * @param cxCropListName
+	 * @param cx_crop_duration
+	 */
+	public AdvertisementCropList(int cxAdvertisementId, int cxCropMonthId, String cxCropListName,
+			String cx_crop_duration) {
+		this.cxAdvertisementId = cxAdvertisementId;
+		this.cxCropMonthId = cxCropMonthId;
+		this.cxCropListName = cxCropListName;
+		this.cx_crop_duration = cx_crop_duration;
+	}
 
 	/**
 	 * @return the cxCropListAdvAutoID
